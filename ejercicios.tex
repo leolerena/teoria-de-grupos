@@ -1,0 +1,135 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{fancyhdr}
+\usepackage{amsmath,amsfonts,amsthm,xcolor,amssymb,mathtools}
+\pagenumbering{gobble}
+\usepackage{geometry}\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{eufrak}
+\usepackage{tikz-cd}
+\usepackage{tcolorbox}
+\usepackage{enumitem}% http://ctan.org/pkg/enumitem
+\setlist[itemize]{noitemsep, topsep=0pt}
+\usepackage{verbatim} %Comentar una sección a la vez, más cómodo que usar %
+
+%Tipografía fancy
+\usepackage{mathpazo}
+
+%%%%%%%%%%%%%  Teoremas  %%%%%%%%%%%%%%%%%
+
+\theoremstyle{plain}
+\newtheorem{teo}{Teorema}
+\newtheorem{propo}{Proposición}
+\newtheorem{lema}[teo]{Lema}
+\newtheorem{ej}{Ejercicio}
+
+
+%Definiciones
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{sol}{Solución}
+\newtheorem*{lemm}{Lema}
+
+% Observaciones
+\theoremstyle{remark}
+\newtheorem{obs}{Observación}
+
+%Para poner una afirmación.
+\newenvironment{claim}[1]{\par\noindent\underline{Afirmación:}\space#1}{}
+\newcommand\coker{\text{coker} \hspace{0.1cm} \phi}
+\newcommand\im{\text{im} \hspace{0.1cm} \phi}
+\newcommand\NN{\mathbb{N}}
+\newcommand\ZZ{\mathbb{Z}}
+\newcommand\RR{\mathbb{R}}
+\newcommand\CC{\mathbb{C}}
+\newcommand\B{\mathscr{B}}
+\newcommand\A{\mathscr{A}}
+\newcommand\G{\mathscr{G}}
+\newcommand\X{\mathfrak{X}}
+\newcommand\g{\mathfrak{g}}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\DeclarePairedDelimiter\ip{\langle}{\rangle}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\Diff}{Diff}
+\let\O\relax
+\DeclareMathOperator{\O}{O}
+\DeclareMathOperator{\U}{U}
+\newcommand\eps{\varepsilon}
+\newcommand\ol{\overline}
+\newcommand\fder[2][]{\frac{\partial^{#1}}{\partial #2}}
+\newcommand\rder[2]{\frac{\partial{#1}}{\partial #2}}
+\newcommand\dd{\mathrm{d}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand\smatrix[1]{\left(\begin{smallmatrix}#1\end{smallmatrix}\right)}
+
+%opening
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Ejercicios de teoría de grupos.} % Left Header
+\rhead{\thepage} % Right Header
+
+\usepackage{subfiles} % Best loaded last in the preamble
+
+\title{\color{red!55!black} Ejercicios de teoría de grupos.}
+\author{Leopoldo Lerena.}
+\date{1er Cuatrimestre de 2021.}
+
+\begin{document}
+\maketitle
+
+\medskip
+\begin{tcolorbox}[colback=teal!25!white,colframe=teal!75!black]
+\begin{ej}
+	Dadas representaciones de un grupo $\rho: G \to GL(V), \psi: G \to GL(V)$ ambas son equivalentes sii vistos como $\CC[G]$ módulos son isomorfos.
+\end{ej}	
+\end{tcolorbox}
+\medskip
+
+Dos representaciones $\rho: G \to GL(V), \  \psi: G \to GL(V)$ son equivalentes si el siguiente diagrama conmuta para todo $g \in G$,
+
+\begin{equation}\label{diagrama-equivalentes}
+\begin{tikzcd}
+\Bbb V  \arrow{d}{\rho_g} \arrow{r}{T}   &  \Bbb W \arrow{d}{\psi_g}  \\
+\Bbb V \arrow{r}{T}     &  \Bbb W .
+\end{tikzcd}
+\end{equation}
+\medskip
+\begin{sol}	
+	Supongamos que tenemos un isomorfismo $S: \Bbb V \to \Bbb W$ como $\CC G$ módulos. En particular es equivariante con respecto a la acción de $G$, es decir que 
+	\[
+	S(g \cdot v) = g \cdot S(v) \ \  \text{para todo} \ v \in \Bbb V \ \text{y para todo} \ g \in G
+	\]
+	traduciendo esto dado que $G$ actua por medio de automorfismos del espacio vectorial tenemos 
+	\[
+	S \rho_g (v) = \psi_g S(v)
+	\]
+	y esto es que el diagrama \ref{diagrama-equivalentes} conmute.  De esta manera como $\CC \subseteq \CC G$ tenemos que en particular restringiendo es un morfismo de $\CC$ módulos. Aparte que sabemos que $S$ es un isomorfismo por lo que queda concluído que nuestras representaciones son equivalentes.
+	
+	Supongamos que nuestras representaciones son equivalentes, en tal caso tenemos que existe un isomorfismo de espacios vectoriales $T: \Bbb V \to \Bbb W$ tal que hace conmutar el diagrama \ref{diagrama-equivalentes}
+	
+	Justamente esta condición representada por la conmutatividad del diagrama nos dice que el morfismo es equivariante con respecto a la acción de $G$ en los espacios vectoriales $\Bbb V, \Bbb W$. De esta manera vimos que es un isomorfismo como $\CC G$ módulos dado que es un isomorfismo lineal que respeta la acción de $G$.
+\end{sol}
+
+
+\begin{tcolorbox}[colback=teal!25!white,colframe=teal!75!black]
+	\begin{ej}
+		Los ideales del producto de dos álgebras $A \times B$ son de la forma $I \times J$ para $I \subset A$, $J \subset B$ ideales.
+	\end{ej}	
+\end{tcolorbox}
+\medskip
+
+\begin{sol}
+	Sea un ideal $K$ del producto $A \times B$. Podemos mirar las primeras coordenadas o las segundas coordenadas de los elementos de este ideal. Afirmo que estos son los ideales $I,J$ que estamos buscando. Para eso primero veamos que se tratan de ideales. Sea $$I= \{ a\in A : \exists b \in B \ (a,b) \in K  \} $$ y esto vale porque sea $(a,b) \in K$ luego si lo multiplicamos a izquierda por algún elemento $(a',b')(a,b) \in K$ por lo que en particular tenemos que $a'a \in I$. Por la misma razón vemos que es cerrado con respecto a la suma de esta manera obtuvimos que $I$ es un ideal del álgebra $A$ y de manera idéntica tenemos que $J$ es un ideal de $B$.
+	
+	Debemos ver entonces que $K = I \times J$. Para esto notemos que al ser álgebras con unidad podemos considerar al elemento $(1,0) \in A \times B$ tal que si $(a,b') \in K$ luego $(a,0) \in K$ también y haciendo lo mismo para algún $b \in J$ genérico obtenemos que sumando estos elementos que $(a,b) \in K$. De esta manera vimos que cualquier elemento génerico de $I \times J$ está en $K$. Por como elegimos a los ideales $I,J$ la otra implicación sale directamente.
+
+	
+	
+\end{sol}	
+	
+\end{document}	
