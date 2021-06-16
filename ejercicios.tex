@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
 \usepackage{fancyhdr}
@@ -13,9 +13,23 @@
 \usepackage{enumitem}% http://ctan.org/pkg/enumitem
 \setlist[itemize]{noitemsep, topsep=0pt}
 \usepackage{verbatim} %Comentar una sección a la vez, más cómodo que usar %
+\usepackage{sectsty}
+
+
+
+\colorlet{chulo}{blue!70!purple}
+\colorlet{rojo}{red!65!black}
+
+
+
+
+\subsectionfont{\color{chulo!60!black} }
+\sectionfont{\color{chulo!30!black} }
+
 
 %Tipografía fancy
-\usepackage{mathpazo}
+%\usepackage{mathpazo}
+\usepackage{tgtermes}
 
 %%%%%%%%%%%%%  Teoremas  %%%%%%%%%%%%%%%%%
 
@@ -23,7 +37,7 @@
 \newtheorem{teo}{Teorema}
 \newtheorem{propo}{Proposición}
 \newtheorem{lema}[teo]{Lema}
-\newtheorem{ej}{Ejercicio}
+\newtheorem*{ej}{Ejercicio}
 
 
 %Definiciones
@@ -41,6 +55,8 @@
 \newcommand\coker{\text{coker} \hspace{0.1cm} \phi}
 \newcommand\im{\text{im} \hspace{0.1cm} \phi}
 \newcommand\NN{\mathbb{N}}
+\newcommand\VV{\mathbb{V}}
+\newcommand\WW{\mathbb{W}}
 \newcommand\ZZ{\mathbb{Z}}
 \newcommand\RR{\mathbb{R}}
 \newcommand\CC{\mathbb{C}}
@@ -81,9 +97,9 @@
 
 \begin{document}
 \maketitle
-
-\medskip
-\begin{tcolorbox}[colback=teal!25!white,colframe=teal!75!black]
+\section{Representaciones de grupos finitos.}
+\bigskip
+\begin{tcolorbox}[colback=teal!20!white,colframe=teal!65!black]
 \begin{ej}
 	Dadas representaciones de un grupo $\rho: G \to GL(V), \psi: G \to GL(V)$ ambas son equivalentes sii vistos como $\CC[G]$ módulos son isomorfos.
 \end{ej}	
@@ -115,7 +131,7 @@ Dos representaciones $\rho: G \to GL(V), \  \psi: G \to GL(V)$ son equivalentes 
 	Justamente esta condición representada por la conmutatividad del diagrama nos dice que el morfismo es equivariante con respecto a la acción de $G$ en los espacios vectoriales $\Bbb V, \Bbb W$. De esta manera vimos que es un isomorfismo como $\CC G$ módulos dado que es un isomorfismo lineal que respeta la acción de $G$.
 \end{sol}
 
-
+\newpage
 \begin{tcolorbox}[colback=teal!25!white,colframe=teal!75!black]
 	\begin{ej}
 		Los ideales del producto de dos álgebras $A \times B$ son de la forma $I \times J$ para $I \subset A$, $J \subset B$ ideales.
@@ -124,12 +140,179 @@ Dos representaciones $\rho: G \to GL(V), \  \psi: G \to GL(V)$ son equivalentes 
 \medskip
 
 \begin{sol}
-	Sea un ideal $K$ del producto $A \times B$. Podemos mirar las primeras coordenadas o las segundas coordenadas de los elementos de este ideal. Afirmo que estos son los ideales $I,J$ que estamos buscando. Para eso primero veamos que se tratan de ideales. Sea $$I= \{ a\in A : \exists b \in B \ (a,b) \in K  \} $$ y esto vale porque sea $(a,b) \in K$ luego si lo multiplicamos a izquierda por algún elemento $(a',b')(a,b) \in K$ por lo que en particular tenemos que $a'a \in I$. Por la misma razón vemos que es cerrado con respecto a la suma de esta manera obtuvimos que $I$ es un ideal del álgebra $A$ y de manera idéntica tenemos que $J$ es un ideal de $B$.
+	Sea un ideal $K$ del producto $A \times B$. Podemos mirar las primeras coordenadas o las segundas coordenadas de los elementos de este ideal. Afirmo que estos son los ideales $I,J$ que estamos buscando. Para eso primero veamos que se tratan de ideales. Afirmo que $$I= \{ a\in A : \exists b \in B \ \text{tal que } \ (a,b) \in K  \} $$ es un ideal de $A$. Sea $(a,b) \in K$ luego si lo multiplicamos a izquierda por algún elemento $(a',b')(a,b) \in K$ por lo que en particular tenemos que $a'a \in I$. Por la misma razón vemos que es cerrado con respecto a la suma de esta manera obtuvimos que $I$ es un ideal del álgebra $A$. Consideremos $J$ las segundas coordenadas y de manera idéntica tenemos que $J$ es un ideal de $B$.
 	
 	Debemos ver entonces que $K = I \times J$. Para esto notemos que al ser álgebras con unidad podemos considerar al elemento $(1,0) \in A \times B$ tal que si $(a,b') \in K$ luego $(a,0) \in K$ también y haciendo lo mismo para algún $b \in J$ genérico obtenemos que sumando estos elementos que $(a,b) \in K$. De esta manera vimos que cualquier elemento génerico de $I \times J$ está en $K$. Por como elegimos a los ideales $I,J$ la otra implicación sale directamente.
-
-	
 	
 \end{sol}	
+
+\medskip
+\begin{tcolorbox}[colback=teal!25!white,colframe=teal!75!black]
+	\begin{ej}
+		Dados espacios vectoriales $\Bbb {\VV, \WW}$ de dimensión finita. Probar que $$ \Bbb V^* \otimes \WW  \simeq \text{Hom}_\CC (\Bbb V, \Bbb W)  $$ como $\CC G$ módulos.
+	\end{ej}	
+\end{tcolorbox}
+\medskip
+
+\begin{sol}
+	Fijemos notación. Sea $\{w_i\}_{i=1 \dots m}$ la base del $G$ módulo $\Bbb W$. 
+	Sea $\{v_i\}_{i=1 \dots n}$ la base del $G$ módulo $\Bbb V$. De esta manera consideremos la base del espacio dual $\Bbb V^*$ asociada que denotaremos $\{ v^*_i\}_{i=1 \dots n}$.
+	
+	Definimos la función sobre estas bases,
+	\begin{equation*}
+	\Psi: \VV^* \times \WW \to \text{Hom}_{\CC} (\VV, \WW) 
+	\end{equation*}
+	tal que $\Psi (v^*_i, w_{ij}) = f_{ij}$ donde $f_{ij}$ queda definida como $f_{ij} (v) = v^*_i(v) w_j$. 
+	
+	Veamos la buena definición. Para eso primero debemos corroborar que fijados índices $i,j$ que la función $f_{ij}$ es un morfismo $\CC$ lineal. Esto es cierto dado que $v^*_i \in \VV^{*}$ es un morfismo $\CC$ lineal. Si lo aplicamos sobre una combinación lineal $\lambda v + \lambda' v'$ obtenemos,
+	\begin{equation*}
+	f_{ij}(\lambda v + \lambda' v') = w_j v^*_i (\lambda v + \lambda' v') = w_j \lambda v^*_i(\lambda v) + w_j \lambda' v^*_i (\lambda' v') = \lambda f_{ij}(v) + \lambda' f_{ij}(v')
+	\end{equation*}
+	
+	Veamos ahora que es $\CC$ bilineal para que nos quede un morfismo $\CC$ lineal definido del producto tensorial $\VV^* \otimes \WW$. 
+	%Notemos primero que $\Psi (v,w) =$ para un $v \in \VV$ genérico si en la base anterior lo escribimos como $v = \sum_{i=1}^n  v^*_i(v) v_i$. 
+	Para esto verificamos que para todos $v^*,\hat v^* \in \VV^*$ y para todos $w,w' \in \WW$ vale que
+	\begin{align*}
+	\Psi (v^* + \lambda \hat v ^*, w) &= w (v + \lambda \hat v)^*(-)   = \psi (v^*,w) +  \lambda\psi  ( \hat v ^*, w)  \\
+	\Psi (v^*, w + \lambda w) &= (w+\lambda w') v^*(-) = \psi (v^*, w)  + \lambda \psi (v^*,  w)
+	\end{align*}
+	Donde hemos usado que $f_{ij}$ es lineal y que al definirlo sobre la base esa es la pinta que tiene sobre elementos genéricos. Por la propiedad universal del producto tensorial tenemos una transformación lineal $\overline \Psi: \VV^* \otimes \WW \to \text{Hom}_{\CC} (\VV, \WW)$.
+	
+	Veamos ahora que esta transformación es G lineal. Para eso sean $g \in G, v^* \in V^*, w \in W$, queremos ver que $g \overline \Psi (v \otimes w) = \overline \Psi (g (v \otimes w))$. Usando la definición de la acción de G en el espacio de morfismos lineales tenemos que dado $v' \in \VV$ vale que \[g \overline \Psi (v \otimes w)(v') = g v^*(g^{-1} v')w.\]
+	Por otro lado 
+	\begin{equation*}
+	\overline \Psi (g (v \otimes w)) (v') = v^{*}(g^{-1}v')(gw)
+	\end{equation*} 
+	dado que el dual $\VV^*$ es un $\CC G$ módulo con $gv^{*}(v') = v^{*}(g^{-1}v')$. Finalmente notemos que $g(\lambda w) = \lambda gv$. Por lo que en definitiva nos queda que 
+	\begin{equation*}
+	v^{*}(g^{-1}v')(gw) = g v^{*}(g^{-1}v'),
+	\end{equation*}
+	tal como queríamos ver. 
+	
+	
+	Para finalizar veamos que $\overline \Psi$ es un isomorfismo. Como ambos son espacios vectoriales finitos de dimensión $nm$ alcanza con ver que es un epimorfismo. Sea $f \in \text{Hom}_\CC(\VV, \WW)$ consideremos entonces $w'_i = f(v_i)$ para todos los $v_i$ de la base de $\VV$. De esta manera 
+	\begin{equation*}
+	\overline \Psi \left(\sum_{i=1}^{n} v^*_i \otimes w'_i \right) = \sum_{i=1}^{n} v_i^*(-) w'_i
+	\end{equation*}
+	tal que este morfismo coincide en una base puesto que $\sum_{i=1}^{n} v_i^*(v_i) w'_i = w'_i$ dado que $v_i^{*}(v_j) = \delta_{ij}$. De esta manera terminamos de ver que el morfismo $\overline \Psi$ es un isomorfismo lineal entre $ \Bbb V^* \otimes \WW $ y $ \text{Hom}_\CC (\Bbb V, \Bbb W)$.
+\end{sol}
+\bigskip
+
+\begin{tcolorbox}[colback=teal!25!white,colframe=teal!75!black]
+	\begin{ej}
+		Sea $\alpha$ un caracter de $G$ y sea $n \in \{ 1,2,3\}$. Demuestre que $\alpha$ es suma de $n$ irreducibles sii $\langle \alpha, \alpha \rangle = n$.
+	\end{ej}	
+\end{tcolorbox}
+\medskip
+
+\begin{sol}
+\begin{itemize}
+\item Veamos primero la ida. Si $\alpha$ es irreducible entonces sabemos que $\langle \alpha \rangle = 1$. El caso $n=1$ entonces lo sabemos por la teoría de caracteres. Falta ver entonces los casos $n=2,3$. Si consideramos irreducibles $\chi_j$ para $1 \le j \le n$ luego resulta que
+\begin{equation*}
+\langle \alpha, \alpha \rangle = \left\langle \sum_{j=1}^{n} \chi_j , \sum_{j=1}^{n} \chi_j \right\rangle = \sum_{j,i=1}^n \langle \chi_i, \chi_j \rangle
+\end{equation*}	
+Los irreducibles son una base ortonormal con respecto a este producto por lo que los únicos términos que sobreviven son $\langle \chi_j, \chi_j \rangle=1$ y hay tantos de estos términos como $n$. 
+
+\item Veamos ahora la vuelta. Como los caracteres irreducibles forman una base ortonormal del espacio sabemos que 
+\begin{equation*}
+\alpha = \sum_{i=1}^k \langle \alpha, \chi_i \rangle \chi_i.
+\end{equation*}
+Por definición obtenemos que el producto contra sí mismo da lo siguiente,
+\begin{equation*}
+\langle \alpha, \alpha \rangle = \sum_{i=1}^{k} \langle \alpha, \chi_i \rangle \overline{\langle \alpha, \chi_i \rangle}
+\end{equation*}
+de manera que nos queda la siguiente suma de números, en principio reales,
+\begin{equation*}
+\langle \alpha, \alpha \rangle = \sum_{i=1}^{k} {|\langle \alpha, \chi_i \rangle|^2 }.
+\end{equation*}
+Esto es una suma de cuadrados de enteros dado que $\alpha$ es un caracter por lo tanto $\langle \alpha, \chi_i \rangle$ es la dimensión de un espacio de morfismos de $\CC G$ módulos. De esta manera obtuvimos la única opción posible es que $\langle \alpha, \chi_i \rangle = 1$ para exactamente $n$ irreducibles. \footnote{Acá es importante que $n < 4$ porque en tal caso podríamos escribirlo de dos maneras distintas como suma de cuadrados de enteros.} Así conseguimos los coeficientes de la escritura en la base de irreducibles y probamos que
+\begin{equation*}
+\alpha = \sum_{j=1}^n  \chi_j.
+\end{equation*}
+\end{itemize}	
+\end{sol}	
+	
+	
+
+\begin{tcolorbox}[colback=teal!25!white,colframe=teal!75!black]
+	\begin{ej}
+		Si $G$ es un grupo finito, $g,h \in G$ y $\chi \in \text{Irred}(G)$ entonces
+		\begin{equation}
+		\label{eq:conmutadores_producto}
+		\dfrac{\chi(g) \chi(h)}{\chi (1)} = \dfrac{1}{|G|} \sum_{z \in G} \chi(zgz^{-1}h).
+		\end{equation}
+		 
+	\end{ej}	
+\end{tcolorbox}
+\medskip
+
+\begin{sol}
+	Partamos de la siguiente igualdad válida para clases de conjugación $C_i, C_j, C_k$ donde interpretamos a los coeficientes no negativos $a_{ijk}$ como la cantidad de soluciones a $gh=x$ con $g \in C_i, h \in C_j, x \in C_k$,
+	\[ 
+	\dfrac{|C_i||C_j|\chi(C_j)\chi(C_i)}{\chi(1)} = \sum_{k=1}^s a_{ijk} |C_k| \chi(C_k).
+	\]
+	Notemos que en particular si tomamos $C_i$ la clase de $g$ y $C_j$ la clase de $h$ y reacomodamos la igualdad obtenemos lo siguiente,
+	\[ 
+	\dfrac{\chi(g)\chi(h)}{\chi(1)} = \dfrac{1}{|C_i||C_j|} \sum_{k=1}^s a_{ijk} |C_k| \chi(C_k).
+	\]
+	Notemos que el lado izquierdo de esta igualdad es básicamente la misma de la identidad \ref{eq:conmutadores_producto}. Por este motivo veamos de reescribir el lado derecho de la anterior igualdad para que nos quede lo que queríamos ver. 
+	
+	Lo que vamos a hacer es multiplicar y dividir el lado derecho de \ref{eq:conmutadores_producto} por lo que necesitamos para que sean iguales y usar la interpretación de los coeficientes $a_{ijk}$. Notemos que en particular estamos sumando sobre todos los elementos del grupo el caracter $\chi$ evaluado en $zgz^{-1}h$, esto es todos los elementos de la clase $C_i$ multiplicados por $h$. Podemos entonces pensar en 
+	
+	\begin{equation*}
+	\dfrac{1}{|G|} \sum_{z \in G} \chi(zgz^{-1}h) = \dfrac{1}{|G|} \sum_{z \in G} \chi(zgz^{-1}h)   \textcolor{violet}{ \dfrac{|C_j|}{|C_j|}}  \textcolor{orange}{\dfrac{|C_k|}{|C_k|}}   \textcolor{blue}{\dfrac{|G|}{|C_i|} \dfrac{|C_i|}{|G|}}.
+	\end{equation*}
+	
+
+	\begin{itemize}
+		\item Multiplicamos por $\textcolor{violet}{ \frac{|C_j|}{|C_j|}}$ para agregar todas las soluciones que son de la forma $gzhz^{-1} = x$ con $x \in C_k$. Sea $zgz^{-1}h = y$ una de las que estamos sumando luego conjugando por el mismo $z^{-1}$ de ambos lados nos queda una solución de la forma $z^{-1}zgz^{-1}hz = z^{-1}yz$ tal como queríamos. Para que sean efectivamente soluciones debemos tomar tantos conjugados distintos de $h$ como es posible y esto justamente es el número $|C_j|$.
+		
+		\item El término .... cumple el rol de descontar todas las veces que $\chi(zgz^{-1}h) = x$ para algún $x \in C_k$ dado que tiene tantos puntos fijos como...
+		
+		\item Por último el término de ... lo agregamos para descontar todas las maneras que tenemos de escribir a algún elemento de la clase de conjugación de $g$ como un conjugado. Esto es porque podría haber $z_1,z_2 \in G$ tales que al conjugar a $g$ me dan el mismo elemento. Por multiplicamos por .... 
+	\end{itemize}	
+\end{sol}
+
+\bigskip
+
+\begin{tcolorbox}[colback=teal!25!white,colframe=teal!75!black]
+	\begin{ej}[11.6]
+		Si $G$ es un grupo simple finito y $x$ es una involución con centralizador de orden dos entonces $G \simeq \ZZ /2$.
+	\end{ej}	
+\end{tcolorbox}
+\medskip
+
+\begin{sol}
+ Sean $t$ la cantidad de involuciones en $G$ luego tenemos la siguiente cota utilizada en la demostración del teorema de Brauer-Fowler usando que en nuestro caso $|C_G(x)|=2$
+ \[
+ \dfrac{|G|-1}{t} < 2.
+ \]
+ Esto nos dice que todo elemento no trivial del grupo es una involución. Un grupo tal que cumple esto es abeliano. Sean $g,h \in G$ luego
+ \[
+ ghg^{-1}h^{-1} = ghgh = (gh)^2 = 1
+ \]
+ usando que al ser involuciones sus inversos son los mimos elementos. Como es abeliano luego el centralizador de cualquier elemento es todo el grupo puesto que todos los elementos del grupo conmutan. Esto nos dice que el grupo tiene orden dos puesto que el centralizador de $x$ tiene orden dos. Concluímos que $G \simeq \ZZ/2$ por cardinalidad.
+\end{sol}
+
+
+
+\begin{tcolorbox}[colback=teal!25!white,colframe=teal!75!black]
+	\begin{ej}[14.8]
+		Demuestre que todo grupo de orden 15 es abeliano.
+	\end{ej}	
+\end{tcolorbox}
+\medskip
+
+\begin{sol}
+	Por el teorema de Burnside sabemos que el número $r$ de clases de conjugación del grupo cumple que 
+	\[
+	r \equiv |G|  \mod 16
+	\]
+	y por otro lado el número de clases de conjugación tiene que ser menor que 16 por lo que no queda más que $r=1$. Esto nos dice que el grupo es abeliano pues hay una única clase de conjugación.
+\end{sol}
+
+
+\section{Teoría de grupos.}
+
 	
 \end{document}	
