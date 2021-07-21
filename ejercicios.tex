@@ -258,19 +258,23 @@ Esto es una suma de cuadrados de enteros dado que $\alpha$ es un caracter por lo
 	Notemos que el lado izquierdo de esta igualdad es básicamente la misma de la identidad \ref{eq:conmutadores_producto}. Por este motivo veamos de reescribir el lado derecho de la anterior igualdad para que nos quede lo que queríamos ver. 
 	
 	Lo que vamos a hacer es multiplicar y dividir el lado derecho de \ref{eq:conmutadores_producto} por lo que necesitamos para que sean iguales y usar la interpretación de los coeficientes $a_{ijk}$. Notemos que en particular estamos sumando sobre todos los elementos del grupo el caracter $\chi$ evaluado en $zgz^{-1}h$, esto es todos los elementos de la clase $C_i$ multiplicados por $h$. Podemos entonces pensar en 
-	
+		
 	\begin{equation*}
 	\dfrac{1}{|G|} \sum_{z \in G} \chi(zgz^{-1}h) = \dfrac{1}{|G|} \sum_{z \in G} \chi(zgz^{-1}h)   \textcolor{violet}{ \dfrac{|C_j|}{|C_j|}}  \textcolor{orange}{\dfrac{|C_k|}{|C_k|}}   \textcolor{blue}{\dfrac{|G|}{|C_i|} \dfrac{|C_i|}{|G|}}.
 	\end{equation*}
-	
 
-	\begin{itemize}
-		\item Multiplicamos por $\textcolor{violet}{ \frac{|C_j|}{|C_j|}}$ para agregar todas las soluciones que son de la forma $gzhz^{-1} = x$ con $x \in C_k$. Sea $zgz^{-1}h = y$ una de las que estamos sumando luego conjugando por el mismo $z^{-1}$ de ambos lados nos queda una solución de la forma $z^{-1}zgz^{-1}hz = z^{-1}yz$ tal como queríamos. Para que sean efectivamente soluciones debemos tomar tantos conjugados distintos de $h$ como es posible y esto justamente es el número $|C_j|$.
-		
-		\item El término .... cumple el rol de descontar todas las veces que $\chi(zgz^{-1}h) = x$ para algún $x \in C_k$ dado que tiene tantos puntos fijos como...
-		
-		\item Por último el término de ... lo agregamos para descontar todas las maneras que tenemos de escribir a algún elemento de la clase de conjugación de $g$ como un conjugado. Esto es porque podría haber $z_1,z_2 \in G$ tales que al conjugar a $g$ me dan el mismo elemento. Por multiplicamos por .... 
-	\end{itemize}	
+    \begin{itemize}
+	\item Multiplicamos por $\textcolor{violet}{ \frac{|C_j|}{|C_j|}}$ para agregar todas las soluciones que son de la forma $gzhz^{-1} = x$ con $x \in C_k$. Sea $zgz^{-1}h = y$ una de las que estamos sumando luego conjugando por el mismo $z^{-1}$ de ambos lados nos queda una solución de la forma $z^{-1}zgz^{-1}hz = z^{-1}yz$ tal como queríamos. Para que sean efectivamente soluciones debemos tomar tantos conjugados distintos de $h$ como es posible y esto justamente es el número $|C_j|$.
+	
+	\item El término $\textcolor{orange}{\frac{|C_k|}{|C_k|}}$ cumple el rol de descontar todas las veces que $\chi(zgz^{-1}h) = x$ para algún $x \in C_k$ dado que tiene tantos puntos fijos como elementos tenga la clase de conjugación de $g$.
+	
+	\item Por último el término de $\textcolor{blue}{\frac{|G|}{|C_i|} \frac{|C_i|}{|G|}}$  lo agregamos para descontar todas las maneras que tenemos de escribir a algún elemento de la clase de conjugación de $g$ como un conjugado. Esto es porque podría haber $z_1,z_2 \in G$ tales que al conjugar a $g$ me dan el mismo elemento y los estamos contando varias veces de más.
+    \end{itemize}
+	Finalmente nos queda lo que queríamos ver puesto que agregamos términos para hacer aparecer lo que nos faltaba. En definitiva,
+	\[
+	\dfrac{1}{|G|} \sum_{z \in G} \chi(zgz^{-1}h) = \dfrac{1}{|C_i||C_j|} \sum_{k=1}^s a_{ijk} |C_k| \chi(C_k)
+	\]
+	por lo que usando la fórmula que teníamos concluímos lo que queríamos ver.
 \end{sol}
 
 \bigskip
@@ -365,7 +369,7 @@ de manera que en definitiva nos queda que $g = xhx^{-1}$, por lo tanto $g \notin
 \begin{sol}	
 	Vamos a construir una representación irreducible que tenga como caracter a $\overline \chi$. La representación correspondiente para $\chi$ es $\rho: G \to GL(V)$ luego miremos $\overline{\rho}: G \to GL(V^{*})$ definida de la siguiente manera,
 	\[
-	\overline \rho (g) (\phi) = \phi(\rho(g^{-1}))  \ \ \ \text{para cierta} \ \ \phi \in V^*
+	\overline \rho (g) (\phi)(v) = \phi(\rho(g^{-1}v))  \ \ \ \text{para cierta} \ \ \phi \in V^*
 	\]
 	que está bien definida pues $\rho(g^{-1})$ es un automorfismo. Ponemos el inverso de $g$ para que más adelante valga la definición. Veamos entonces que $\overline\rho(g)\overline\rho(h) = \overline\rho (gh)$ para todo $g,h \in G$,
 	\[
@@ -377,7 +381,17 @@ de manera que en definitiva nos queda que $g = xhx^{-1}$, por lo tanto $g \notin
 	\]
 	por lo tanto es una representación. 
 	
-	Calculemos su caracter. Para
+	Calculemos su caracter que denotaremos $\chi_{\overline\rho}$. Para eso notemos que si calculamos el caracter de un $g \in G$ nos queda la traza de la matriz de $\rho(g^{-1})$ si consideramos la base dual de una base fijada para $\Bbb V$. Como la matriz de $\rho(g)$ es tal que corresponde a la representación de un grupo finito luego sus autovalores tienen norma uno. De esta manera obtenemos que la traza de la matriz inversa que es la suma de los autovalores tiene que ser el conjugado pues para norma uno el conjugado es la inversa. De esta manera obtenemos que 
+	\begin{equation*}
+		\chi_{\overline\rho}(g)=\chi(g^{-1}) = \overline \chi(g)
+	\end{equation*}
+	y con esto probamos que esta representación que nos construímos tiene el carácter deseado.
+	
+	Finalmente para ver que es irreducible notemos que al calcular su producto contra sí mismo
+	\begin{equation*}
+		\langle \overline\chi,\overline\chi \rangle = \sum \overline\chi(g) \chi(g)
+	\end{equation*}
+	puesto que el conjugado de un conjugado es el mismo elemento. De esta manera obtuvimos que $$\langle \overline\chi,\overline\chi \rangle = \langle \chi,\chi \rangle=1$$
 \end{sol}
 
 
@@ -388,7 +402,7 @@ de manera que en definitiva nos queda que $g = xhx^{-1}$, por lo tanto $g \notin
 
 
 \begin{tcolorbox}[colback=teal!25!white,colframe=teal!75!black]
-	\begin{ej}
+	\begin{ej}[20.44]
 		Sean $G$ un grupo finito, $P$ un p Sylow de $G$ luego si existe $H$ subgrupo tal que $N_G(P) \subseteq H$ resulta que $N_G(H) = H$.
  	\end{ej}	
 \end{tcolorbox}
@@ -399,12 +413,177 @@ de manera que en definitiva nos queda que $g = xhx^{-1}$, por lo tanto $g \notin
 	\[
 	m^{-1}g=h \implies g=mh \ \ \text{para algún } \ h \in N_G(P) \subseteq M
 	\]
-	de esta manera vimos que todo elemento de $N_G(M)$ está contenido en $N_G(P)M = M$ tal como queríamos ver.
+	de esta manera vimos que todo elemento de $N_G(M)$ está contenido en $N_G(P)M = M$ tal como queríamos ver.	
+\end{sol}
+\bigskip
+
+\begin{tcolorbox}[colback=teal!25!white,colframe=teal!75!black]
+	\begin{ej}[20.45]
+		Probar que las siguientes afirmaciones son equivalentes para algún grupo $G$ finito.
+		\begin{enumerate}
+		\item $G$ es nilpotente.
+		\item $G$ cumple la condición normalizadora.
+		\item Todo maximal de $G$ es normal en $G$.
+		\end{enumerate}
+	\end{ej}	
+\end{tcolorbox}
+\medskip
+
+\begin{sol}
+	Veamos todas las implicaciones. El caso \textbf{1 $\Rightarrow$ 2} ya lo vimos en las notas. Veamos entonces \textbf{2 $\Rightarrow$ 3}. Para eso consideremos un subgrupo $M$ maximal y notemos que cumplir la condición normalizadora nos dice que su normalizador lo contiene estrictamente así que tiene que ser todo el grupo. Esto es que todo grupo maximal es normal como queríamos ver.
 	
+	Ahora pasemos al caso \textbf{3} $\Rightarrow$ \textbf{1}. Para esto usemos la equivalencia para ver que un grupo finito es nilpotente si todo Sylow es normal. Supongamos que algún Sylow $P$ no es normal. En tal caso $N_G(P)$ es un subgrupo propio de $G$ que está contenido en algún maximal $M$. Por el argumento de Frattini como $P$ es un Sylow de $M$ y este subgrupo maximal es normal por hipótesis tenemos que $G=MN_G(P)$ pero esto es una contradicción pues en tal caso $G = M$ pero es un subgrupo propio. Por lo tanto no puede ser que ningún Sylow no sea normal por lo que el grupo es nilpotente como queríamos ver.
+\end{sol}
+\newpage
+
+\begin{tcolorbox}[colback=teal!25!white,colframe=teal!75!black]
+	\begin{ej}[20.48] Sea $G$ un grupo finito. Demuestre que las siguientes afirmaciones son equivalentes: 
+		\begin{enumerate}
+			\item $G$ es nilpotente.
+			\item Cualesquiera dos elementos de órdenes coprimos conmutan.
+			\item Todo cociente no trivial de $G$ tiene centro no trivial.
+			\item Si $d$ divide al orden de $G$, existe un subgrupo normal de $G$ de orden $d$.
+		\end{enumerate}
+	\end{ej}	
+\end{tcolorbox}
+\medskip
+
+\begin{sol}
+	Empecemos viendo que \textbf{1} $\Rightarrow$ \textbf{2}. Sabemos que al ser $G$ nilpotente es un producto de sus subgrupos de Sylow. Esto es $G = P_1 \times \dots P_k$ para los distintos Sylows $P_i$ correspondientes a los primos que dividen al orden de $G$. Tomemos dos elementos $g,h \in G$ tales que sus órdenes son coprimos. En particular podemos escribirlos de la siguiente manera única $g=(g_1, \dots, g_k)$ y $h=(h_1, \dots, h_k)$ para $g_i,h_i \in P_i$ elementos de un p grupo. Notemos que el órden de un elemento de un grupo que es un producto de grupos de órdenes coprimos lo podemos pensar como el mínimo común múltiplo de los órdenes de sus coordenadas. Es decir $|g|= \text{mcm}(|g_1|,\dots, |g_k|)$ e idénticamente para $h$. En particular como sus órdenes son coprimos resulta que $|g_i|$ y $|h_i|$ son coprimos también caso contrario como son p grupos tendríamos que alguna potencia de $p$ divide tanto a $|g|$ como a $|h|$. Como la única opción del órden de un elemento en $P_i$ es ser una potencia de $p$ para que sean coprimos alguno de $g_i,h_i$ debe ser idénticamente 1 para todo $i$. El producto $hg=(h_1g_1, \dots, h_kg_k)$ en cada coordenada tiene $h_i$ o $g_i$ dependiendo cual de los dos sea la identidad (bien podrían ser ambos). De esta manera es evidente que conmutan porque el product $gh$ va a tener las mismas coordenadas porque $h_i$ conmuta con $g_i$ para todo $i$ por lo dicho anteriormente.
+	
+	La vuelta \textbf{2} $\Rightarrow$ \textbf{1} es un poco más directa. Vamos a ver que todo Sylow es normal. Para eso consideremos los Sylows $P_1, \dots, P_k$ de nuestro grupo $G$ y notemos que al ser cada elemento de un Sylow coprimo con un elemento de otro Sylow distinto luego deben conmutar por hipótesis. Esto nos dice que dado $g_i \in P_i, g_j \in P_j$ vale que
+	\[
+	g_ig_jg_i^{-1}g_j^{-1} = 1 \ \implies g_ig_jg_i^{-1} = g_j
+	\]
+	de esta manera vimos que cada Sylow normaliza a los demás, esto es que $P_i \subset N_G(P_j)$. Como el grupo lo podemos escribir así $G=P_1\dots P_k$ obtenemos que por lo visto anteriormente $N_G(P_j)=G$ para todo $j$. Esto es que cada Sylow es normal tal como queríamos ver. 
+	
+	%Veamos ahora \textbf{2} $\Rightarrow$ \textbf{3}. Dado un cociente no trivial del grupo $G$ sabemos que su orden es un divisor del orden de $G$. En particular veamos el caso que el cociente tiene al menos dos primos distintos que lo dividen. Si no fuera el caso entonces sería un $p$ grupo y como tal su centro no es trivial. Consideremos entonces dos elementos del cociente $\overline g$ y $\overline h$ tales que tienen órden coprimo, en particular el orden de algún $g,h$ arriba suyo también va a tener orden coprimo dado que su orden debe ser un divisor del orden del elemento en el cociente. Usando la hipótesis estos dos elementos conmutan por lo que sus imágenes en el cociente también y entonces hemos visto que el centro del cociente es no trivial.
+	
+	Por otro lado es fácil ver que \textbf{1} $\Rightarrow$ \textbf{3}. Esto en particular porque todo cociente no trivial de un nilpotente es nilpotente y todos los grupos nilpotentes tienen centro no trivial. Por otro lado no es complicado ver la vuelta \textbf{3} $\Rightarrow$ \textbf{1} porque en este caso si miramos la serie central ascendente tenemos que $Z_{i+1} = Z(G/Z_i)$ y por hipótesis nunca es trivial y al ser $G$ finito eventualmente la serie central ascendente se va a estancar en $Z_c = G$ por lo que va a ser nilpotente.
+	
+	Finalmente nos queda ver que \textbf{4} $\Rightarrow$ \textbf{1}. Esto es evidente usando que en particular todos los subgrupos de Sylow van a ser normales por lo tanto el grupo es nilpotente equivalentemente. Acá estamos usando $d=p^{k}$ donde $k$ es la máxima potencia de $k$ tal que $p^{k}$ divide al orden del grupo. A su vez podemos ver la vuelta \textbf{1} $\Rightarrow$ \textbf{4} porque dentro de cada Sylow digamos de orden $p^k$ tenemos un subgrupo normal de orden $p^j$ para cualquier $j\le k$ dentro del subgrupo y como es normal en todo $G$ tenemos que también lo es en $G$. En particular podemos tomar el producto de estos subgrupos normales y nos va a quedar un subgrupo normal del orden $d$ que querramos. 
+\end{sol}
+
+\newpage
+\begin{tcolorbox}[colback=teal!25!white,colframe=teal!75!black]
+	\begin{ej} [22.12] Sea $G$ un grupo y sea $M$ un subgrupo normal de G maximal. Demuestre que $G/M$ es cíclico de orden primo.
+	\end{ej}	
+\end{tcolorbox}
+\medskip
+
+\begin{sol}
+	Sabemos que los subgrupos de $G/M$ se corresponden justamente con los subgrupos que contienen a $M$ en $G$. Por este motivo el cociente $G/M$ debe ser tal que no tenga subgrupos y esto solo ocurre cuando es cíclico de orden primo. Caso contrario si el cociente no es de orden primo por el teorema de Lagrange va a tener un subgrupo de orden algún divisor propio del orden del cociente. Esto nos dice que tiene que ser de orden primo y por lo tanto no queda más que sea cíclico también.
+\end{sol}
+
+
+\bigskip
+\begin{tcolorbox}[colback=teal!25!white,colframe=teal!75!black]
+	\begin{ej}[23.4]
+		Demuestre que el subgrupo de Fitting es característico en $G$.
+	\end{ej}	
+\end{tcolorbox}
+\medskip
+\begin{sol}
+	Para ver que un subgrupo es característico tomemos un automorfismo $\varphi$ del grupo $G$ y veamos que fija al subgrupo. Nuestro grupo $G$ que es finito tiene como factores primos a ciertos primos $p_1, \dots, p_k$. El subgrupo de fitting del grupo está dado por 
+	\[
+	F(G) =  O_{p_1}(G) \dots O_{p_k}(G).
+	\]
+	
+	Sabemos que los grupos $O_{p_i}$ son normales para cada $p_i$. La idea ahora es notar que aparte son todos característicos luego el subgrupo de Fitting también va a serlo. Para eso notemos que dado $g_i \in O_{p}$ el p radical que le corresponde al primo $p$ sabemos que el automorfismo manda Sylows en Sylows porque debe mantener el orden y aparte al ser un isomorfismo debe ser que los permuta. Así tenemos que 
+	\[
+	\varphi \left(   \bigcap_{{P \   \text{p Sylow}}}  P \right)  = \bigcap_{P \   \text{p Sylow}} \varphi(P)
+	\] 
+	por lo que en definitiva vimos que $\varphi(O_p)=O_p$. Se sigue que el subgrupo de Fitting es característico porque
+\end{sol}
+
+\bigskip
+\begin{tcolorbox}[colback=teal!25!white,colframe=teal!75!black]
+	\begin{ej}[24.6]
+		Demostrar las siguientes afirmaciones:
+		\begin{enumerate}
+			\item Todo subgrupo de un grupo súper-resoluble es súper-resoluble.
+			\item Todo cociente de un grupo súper-resoluble es súper-resoluble.
+		\end{enumerate}
+	\end{ej}	
+\end{tcolorbox}
+\medskip
+
+\begin{sol}
+	\begin{enumerate}
+		\item Sea $H$ un subgrupo de un grupo súper resoluble $G$ luego para ver que es súper resoluble él mismo lo que hacemos es tomar la sucesión de $G$ e intersecarla con $H$. Esto es consideremos la sucesión de $G$
+		\[
+		G=G_0 \supseteq G_1 \supseteq \dots G_n = \{ 1 \}
+		\]
+		y ahora la sucesión para $H$ que es la siguiente,
+		\[
+		H=H_0 \supseteq G_1 \cap H \supseteq \dots H_n = \{ 1 \}.
+		\]
+		En particular notemos que ahora estos $H_i$ son normales en $H$ puesto que al conjugar cualquier elemento $h_i \in H_i$ por algún $h \in H$ tenemos $hh_ih^{-1} \in H_i$ dado que en particular está en $G_i$ que es normal en $G$ y que también está en $h$. De esta manera obtenemos que esto es una sucesión de subgrupos normales. Quedaría ver que efectivamente los cocientes dan cíclicos pero esto sale de los teoremas del isomorfismo. Para eso consideremos el cociente $H_{i+1}/H_i$ tal que lo podemos pensar así,
+		\begin{equation*}
+			\dfrac{H_{i+1}}{H_i} = \dfrac{H_{i+1}}{H_{i+1}\cap G_i} 
+		\end{equation*}
+		entonces usando el segundo teorema del isomorfismo obtenemos 
+		\begin{equation*}
+			\dfrac{H_{i+1}}{H_{i+1}\cap G_i} \simeq \dfrac{H_{i+1}G_i}{G_i} 
+		\end{equation*}
+		y esto es un subgrupo de $\frac{G_{i+1}}{G_i}$ dado que $G_i$ es normal por lo tanto el producto nos da un subgrupo. Concluímos que es cíclico puesto que todo subgrupo de un cíclico es cíclico.
+		
+		
+		
+		
+		\item Sea $G/H$ cociente de un grupo súper resoluble. Luego siguiendo un razonamiento similar al del caso anterior podemos obtener la siguiente sucesión 
+		\begin{equation*}
+		G/H = K_0 \supseteq HG_1/H = K_1 \supseteq \dots \supseteq \{1\} = K_n
+		\end{equation*}
+		y así como en el caso anterior debemos verificar que estos sean subgrupos realmente y que los cocientes sucesivos sean cíclicos. Notemos que efectivamente son subgrupos puesto que por la misma razón de antes el producto $HG_i$ es un subgrupo de $G$ pues $G_i$ es normal en $G$ y aparte contiene a $H$ y al subgrupo anterior por como son los $G_i$. Por el teorema de la correspondencia es un subgrupo del cociente $G/H$. Por otro lado volviendo a usar un teorema de isomorfismo tenemos que
+		\begin{equation*}
+			K_{i+1}/K_i =  \dfrac{HG_{i+1}/H}{HG_i/H}  \simeq G_{i+1}/G_{i}
+		\end{equation*}
+		y esto es cíclico porque $G$ es súper resoluble.
+	\end{enumerate}
+\end{sol}
+
+
+\bigskip
+\begin{tcolorbox}[colback=teal!25!white,colframe=teal!75!black]
+	\begin{ej}
+		Sea $\varphi:Q \to K$ un 1-ciclo. Demuestre las siguientes afirmaciones:
+		\begin{enumerate}
+			\item $\varphi(1)=1$.
+			\item $\varphi(y^{-1}) = y^{-1}\varphi(y)^{-1}$
+			\item $\ker \varphi$ es un subgrupo de $Q$.
+		\end{enumerate}
+	\end{ej}	
+\end{tcolorbox}
+\medskip
+\begin{sol}
+	\begin{enumerate}
+		\item Como $\varphi(x)=\varphi(1)(1 \cdot \varphi(x))$ y para toda acción por automorfismos tenemos que $1$ actúa como la identidad luego nos queda que para todo $x \in Q$ vale que $\varphi(x)=\varphi(1)\varphi(x)$. En particular para $x =1$ tenemos que $\varphi(1)^2=\varphi(1)$ por lo que multiplicando por la inversa de $\varphi(1)$ obtemos que $\varphi(1)=1$ tal como queríamos ver.
+		\item Como estamos actuando por isomorfismos sabemos que dados $a \in Q, b,c \in K$ luego
+		\begin{equation*}
+			a \cdot (bc) = (a \cdot b)(a \cdot c)
+		\end{equation*}
+		y de esto deducimos que $(a \cdot b)^{-1} = a \cdot b^{-1}$ puesto que usando la propiedad anterior nos queda la acción en la identidad y como son automorfismos envían el 1 al 1. 
+		
+		Sabiendo esto podemos usar que $1=\varphi(1) = \varphi(y^{-1})(y^{-1} \cdot \varphi(y))$ por lo visto en el ítem anterior y despejando nos queda
+		\[
+		\varphi(y^{-1}) = (y^{-1} \cdot \varphi(y))^{-1} = y^{-1} \cdot \varphi(y)^{-1}
+		\]
+		tal como queríamos ver.
+		\item Por el primer ítem tenemos que la identidad está en $\ker \varphi$. Veamos que es cerrado por inversos y por el producto.
+		
+		Para ver que es cerrado tomemos $x,y \in \ker \varphi$ luego
+		\[
+		\varphi(xy) = \varphi(x) (x \cdot \varphi(y)) = 1 (x \cdot 1) = 1
+		\]
+		por lo tanto es cerrado para el producto. Para ver que es cerrado por inversos tomemos $x \in \ker \varphi$ luego
+		\[
+		1=\varphi(1) = \varphi(x^{-1}) (x \cdot \varphi(x)) = \varphi(x^{-1}) (x \cdot 1) = \varphi(x^{-1})
+		\]
+		por lo tanto vimos que se trata efectivamente de un subgrupo.
+	\end{enumerate}
 \end{sol}
 
 
 
-
-	
 \end{document}	
