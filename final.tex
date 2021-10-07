@@ -1,0 +1,371 @@
+\documentclass[aspectratio=169, 9pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{pifont}
+\newcommand{\xmark}{\ding{55}}
+\usetheme[progressbar=frametitle]{metropolis}
+\usepackage{appendixnumberbeamer}
+\usepackage{hyperref}
+\usepackage{eufrak}
+\usepackage{tikz-cd}
+\usepackage{tcolorbox}
+\usepackage{enumitem}% http://ctan.org/pkg/enumitem
+	\definecolor{ao(english)}{rgb}{0.0, 0.5, 0.0}
+
+\setbeamercolor{background canvas}{bg=white}
+\usepackage{multicol}
+\usepackage{chronology}
+
+
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+\definecolor{amber}{rgb}{1.0, 0.49, 0.0}
+\setbeamercolor{progress bar}{fg=amber,bg=alerted text.fg!50!black!10}
+
+\makeatletter
+\setlength{\metropolis@titleseparator@linewidth}{2pt}
+\setlength{\metropolis@progressonsectionpage@linewidth}{2pt}
+\setlength{\metropolis@progressinheadfoot@linewidth}{2pt}
+\makeatother
+
+\definecolor{ultramarine}{RGB}{81, 131, 232} 
+\setbeamercolor{frametitle}{bg= ultramarine}
+
+\usepackage{framed}
+\definecolor{shadecolor}{gray}{0.9}
+
+\renewcommand\qedsymbol{\textcolor{orange}{$\blacksquare$}}
+
+\usepackage[font={footnotesize}]{caption}
+
+\usepackage{xspace}
+\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+
+\title{Multiplicadores de Schur y teorema de Schur.}
+\subtitle{Final de teoría de grupos.}
+% \date{\today}
+\date{}
+\author{Leopoldo Lerena}
+\institute{Universidad de Buenos Aires}
+% \titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}}
+
+\begin{document}
+
+\maketitle
+
+%\begin{frame}{Índice}
+%  \setbeamertemplate{section in toc}[sections numbered]
+%  \tableofcontents%[hideallsubsections]
+%\end{frame}
+
+\section[Extensiones centrales]{Extensiones centrales.}
+
+\begin{frame}[fragile]{Definiciones básicas.}
+
+
+
+\bigskip
+
+Una \alert{extensión} de un grupo $K$ (abeliano) por otro grupo $Q$ es un grupo $G$ tal que encaja en la siguiente sucesión exacta corta,
+
+\begin{equation*}
+    1\longrightarrow K\xrightarrow{\phantom{a}\iota\phantom{a}}G\xrightarrow{\phantom{a}\pi\phantom{a}}Q\longrightarrow 1
+\end{equation*}
+\pause
+Diremos que la extensión es \alert{central} si aparte sucede que $\iota(K) \le ZG$.
+
+\medskip
+
+Un \alert{levantamiento} de un grupo $Q$ es una función $l:Q \to G$ tal que $l \circ \pi = id_Q$. Esto es elegir un transversal de $G/K \simeq Q$.
+\pause
+\bigskip
+\begin{alertblock}{Objetivo.}
+Clasificar todas las extensiones centrales de $Q$ por $K$.
+\end{alertblock}
+\end{frame}
+
+\begin{frame}[fragile]{Cociclos}
+Sea $G$ una extensión central de $Q$ por $K$ y sea $l$ algún lift. Dados $x,y \in Q$ podemos definirnos una función $f:Q \times Q \to K$ tal que 
+\begin{equation*}
+l(xy) + f(x,y) = l(x) + l(y)    
+\end{equation*} 
+
+diremos que esta $f$ es un \alert{cociclo} de nuestra extensión $G$. Al conjunto de todas los cociclos lo denotaremos $Z^2(Q,K)$.
+\medskip
+\pause
+\metroset{block=fill}
+\begin{alertblock}{Proposición.}
+	Una función $f:Q \times Q \to K$ es un cociclo sii satisface las siguientes dos propiedades para todos $x,y,z \in Q$,
+	\begin{enumerate}
+		\item \alert{Identidad del cociclo}: $f(y,z)f(xy,z)^{-1}f(x,yz) = f(x,y)$.
+		\item $f(1,y)=1=f(x,1)$. 
+	\end{enumerate}
+\end{alertblock}
+\pause
+\begin{exampleblock}{Observación.}
+ $Z^2(Q,K)$ resulta ser un grupo abeliano.
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]{Cociclos}
+El problema que tenemos es que la coclase que define una extensión depende del transversal elegido. 
+%Es decir si tomamos transversales distintos $l,l':Q \to G$ le corresponden coclases distintas $f,f':Q \times Q \to K$.
+
+\pause
+\bigskip
+
+\metroset{block=fill}
+\begin{alertblock}{Proposición.}
+	La diferencia de dos cociclos $f,g:Q \times Q \to K$ es una función $h:Q \to K$ tal que $h(1)=0$ y que hace valer la siguiente igualdad,
+	\begin{equation*}
+	f(x,y) g(x,y)^{-1} = h(x)h(xy)^{-1}h(y)
+	\end{equation*}
+\end{alertblock}
+
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Cobordes.}
+
+ Un \alert{coborde} es un cociclo $g:Q \times Q \to K$ para el cual existe alguna función $h:Q \to K$ con $h(1)=0$ que hace valer la siguiente igualdad,
+ 
+ \begin{equation*}
+     g(x,y) = h(y)h(xy)^{-1}h(x)
+ \end{equation*}
+ Al conjunto de los cobordes lo vamos a denotar $B^2(Q,K)$.
+ 
+ \pause
+ \medskip
+ \begin{exampleblock}{Observación.}
+ $B^2(Q,K)$ resulta ser un subgrupo de $Z^2(Q,K)$.
+\end{exampleblock}
+ 
+\end{frame}
+
+\begin{frame}[fragile]{Segundo grupo de cohomología.}
+Dado grupos $(Q,K)$ luego su \alert{segundo grupo de cohomología} es el grupo 
+\begin{equation*}
+    H^2(Q,K) = \dfrac{Z^2(Q,K)}{B^2(Q,K)}
+\end{equation*}
+\medskip
+\pause
+Dos extensiones centrales $G,G'$ de $K$ por $Q$ son equivalentes si existe algún isomorfismo  $\beta:G \to G'$ tal que hace conmutar a este diagrama,
+
+\begin{equation*}
+	\begin{tikzcd}
+	1 \arrow[r] & K \arrow[r] \arrow[d, "id", no head] & G' \arrow[r]                   & Q \arrow[r] \arrow[d, phantom]       & 1 \\
+	1 \arrow[r] & K \arrow[r]                          & G \arrow[u, "\beta"] \arrow[r] & Q \arrow[u, "id", no head] \arrow[r] & 1
+	\end{tikzcd}
+\end{equation*}
+
+
+
+\pause
+\metroset{block=fill}
+\begin{alertblock}{Teorema}
+Dos extensiones $G,G'$ son equivalentes como extensiones sii corresponden a la misma clase de $H^2(Q,K)$.
+\end{alertblock}
+
+\end{frame}
+
+
+\section[Multiplicador de Schur.]{Multiplicador de Schur.}
+\begin{frame}[fragile]{Multiplicador de Schur.}
+
+Sea $Q$ un grupo. Su \alert{multiplicador de Schur} es el siguiente grupo $M(Q) = H^2(Q, \Bbb C^\times)$. \pause
+\metroset{block=fill}
+\begin{alertblock}{Teorema.}
+	El multiplicador de Schur de un grupo finito es un grupo finito abeliano.
+\end{alertblock} \pause
+\textcolor{orange}{Demostración.}
+\begin{itemize}
+	\item Dada $f \in Z^2(Q, \Bbb C^\times)$ definimos $\sigma:Q \to \Bbb C^\times$ por medio de
+	\begin{equation*}
+		\sigma(x) = \prod_{z \in Q} f(x,z)
+	\end{equation*} \pause
+	tal que multiplicando la identidad del cociclo para todo $z$ obtenemos que vale la siguiente igualdad si $n=|Q|$,
+	\begin{equation*}
+		\sigma(y)\sigma(xy)^{-1}\sigma(x) = f(x,y)^n.
+	\end{equation*} \pause
+	\item Definimos $g(x,y)=f(x,y)h(y)h(xy)^{-1}h(x)$ donde $h(x)$ es una raíz n-ésima de $\sigma(x)^{-1}$ con $h(1)=1$. \pause Notar que $[g]=[f]$. Por el ítem anterior $g(x,y)^n=1$ por lo que cada $[f] \in M(Q)$ determina una función $g:Q \times Q \to C_n$ de manera que $M(Q)$ es finito.
+\end{itemize}
+
+\end{frame}
+
+\section[Cubrimientos.]{Cubrimientos.}
+\begin{frame}[fragile]{Representaciones proyectivas.}
+Una \alert{representación proyectiva} de un grupo $Q$ es algún morfismo de grupos $\rho:Q \to PGL_n(\Bbb C)$. \pause
+\medskip
+
+
+Diremos que un grupo tiene la \alert{propiedad del levantado de representaciones proyectivas} si existe alguna extensión $U$ de $Q$ por algún otro grupo $K$, y cada vez que $f:U \to Q$ es un epimorfismo con núcleo $K$ y $\rho:Q \to PGL_n(\Bbb C)$ es una representación proyectiva existe alguna representación $\rho:U \to GL_n(\Bbb C)$ tal que hace conmutar al siguiente diagrama,
+
+\begin{equation*}
+	\begin{tikzcd}
+	U \arrow[r, "f", two heads] \arrow[d, "\overline \rho"', dashed] & Q \arrow[d, "\rho"] \\
+	GL_n(\Bbb C) \arrow[r, "\pi", two heads]                         & PGL_n(\Bbb C)      
+	\end{tikzcd}
+\end{equation*}
+
+\end{frame}
+\begin{frame}[fragile]{Motivación de teoría de representaciones.}
+\begin{exampleblock}{Motivación histórica.}
+Extender representaciones irreducibles de algún subgrupo $H$ a todo $Q$. De la manera más natural que tenemos de extenderla obtenemos una representación proyectiva de $Q$.
+\end{exampleblock}
+
+\bigskip
+\pause
+
+Si consideramos que una representación proyectiva $\rho:Q \to PGL_n(\Bbb C)$ es un morfismo de grupos, tomando levantados en $GL_n(\Bbb C)$ obtenemos que es una colección de operadores que cumplen que para ciertas funciones $T:Q \to GL_n \Bbb C, f_\rho: Q \times Q \to \Bbb C$.
+\begin{equation*}
+	T(x)T(y) = f_\rho(x,y)T(x,y)
+\end{equation*}
+\pause tenemos el siguiente diagrama que conmuta
+\begin{equation*}
+	\begin{tikzcd}
+	& GL_n(\Bbb C) \arrow[d, "\pi"] \\
+	Q \arrow[ru, "T"] \arrow[r, "\rho"] & PGL_n(\Bbb C)                
+	\end{tikzcd}
+\end{equation*}
+\end{frame}
+
+\begin{frame}[fragile]{Cubrimientos.}
+Sea $Q$ un grupo. Una extensión central $U$ de $K$ por $Q$, para $K$ algún grupo abeliano, es un \alert{cubrimiento} de $Q$ si cumple
+\begin{itemize}
+	\item $K \le U'$.
+	\item $U$ tiene la propiedad de levantamiento proyectiva.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Transgresiones.}
+Dado un grupo abeliano $M$ denotaremos al grupo $M^* = \text{hom}(M, \Bbb C^\times)$.
+\pause
+\bigskip
+
+
+Dada $G$ alguna extensión central de $K$ sobre $Q$ que sabemos está representada por alguna cocadena $e$ definimos un morfismo $\delta: K^{*} \to M(Q)$ por medio de $\delta(\phi) = [\phi \circ e].$ Este morfismo de grupos lo llamaremos la \alert{transgresión}.
+\end{frame}
+
+\begin{frame}[fragile]{Teorema I: epimorfismos.}
+\metroset{block=fill}
+\begin{alertblock}{Teorema.}
+	La transgresión $\delta$ es un epimorfismo sii $G$ tiene la propiedad de levantamiento de representaciones proyectivas.
+\end{alertblock}
+\textcolor{orange}{Demostración.} Vamos a ver solo la ida.
+\begin{itemize}
+	\item Vamos a ver que $\rho:Q \to PGL_n(\Bbb C)$ se puede levantar si $[f_\rho] \in \text{im} \ \delta$.
+	\item Si $[f_\rho]$ está en la imagen entonces para todo $x,y \in Q$ existe $\phi \in K^*$ y $h:Q \to \Bbb C^\times$ tal que
+	\begin{equation*}
+		\phi \circ e (x,y) = f_\rho(x,y)h(y)h(xy)^{-1}h(x)
+	\end{equation*}
+	\item Definimos entonces $\overline \rho:U \to GL_n(\Bbb C)$ por medio de
+	\begin{equation*}
+		\overline \rho(a,x) = \phi(a)h(x)T(x)
+	\end{equation*}
+	y verificamos que es un morfismo de grupos que hace valer la propiedad del levantamiento de representaciones proyectivas.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Lemas de divisibilidad.}
+	Un grupo $D$ es \alert{divisible} si para cada $x \in D$ y para cada $n \ge 2$ existe algún $g \in D$ tal que $g^n = x$ para todo $n \ge 2$. \pause
+	\metroset{block=fill}
+	\begin{alertblock}{Propiedad inyectiva, Baer.}
+		Sea $D$ un grupo divisible, $A \le B$. Si $f:A \to D$ es un morfismo de grupos entonces $f$ puede extenderse a un morfismo de grupos $f:B \to D$.
+	\end{alertblock}
+	\metroset{block=fill}
+	\begin{alertblock}{Teorema.}
+	Sea $G$ es un grupo abeliano, $a \in G$, $S$ un subgrupo de $G$ con $a \notin S$. Entonces existe un morfismo $\phi:G \to \Bbb C^\times$ con $\phi(S)=0$ y $\phi(a) \neq 0$.
+	\end{alertblock}
+\end{frame}
+
+
+\begin{frame}[fragile]{Teorema II: monomorfismos.}
+\metroset{block=fill}
+\begin{alertblock}{Teorema.}
+La transgresión $\delta$ es un monorfismo sii $K \le U'$.
+\end{alertblock}
+\textcolor{orange}{Demostración.} Vamos a ver solo la ida.
+\begin{itemize}
+	\item Primero veamos que si $\phi \in K^*$ y $\phi(K \cap U')=1$ entonces $\delta(\phi)=1$.
+	\pause
+	\item Por el teorema del segundo isomorfismo sabemos que $K/(K'\cap U) \simeq KU'/U'$. Definimos $\psi:KU'/U' \to \Bbb C^\times$ como $\psi(aU')=\phi(a)$ usando que está bien definida por el teorema del cociente.
+	\pause
+	\item Por la divisibilidad de $\Bbb C^\times$ levantamos el morfismo a $\Psi: U/U' \to \Bbb C^\times$.
+	\pause
+	\item Definimos $h:Q \to \Bbb C^\times$ por medio de $\Psi((1,x)U')$ y verificamos que \begin{equation*}
+		\phi \circ e(x,y) = h(y)h(xy)^{-1}h(x)
+	\end{equation*}
+	por lo tanto es un coborde y esto nos dice que $\delta(\phi) = 1$.
+	\item Finalmente si $K \cap U' < K$ luego usando el teorema anterior debe existe $\phi \in K^*, \phi \neq 1$ tal que $K\cap U' < \ker \phi$ pero esto contradice lo probado al comienzo. Por lo tanto $K = K \cap U'$ tal como queríamos ver.
+\end{itemize}
+\end{frame}
+
+
+\section[Teorema de Schur.]{Teorema de Schur.}
+
+\begin{frame}[fragile]{Lema previo.}
+\metroset{block=fill}
+\begin{alertblock}{Lema.}
+Si $Q$ es un grupo finito entonces $B^2(Q, \Bbb C^\times)$ tiene un complemento finito $M$ dentro de $Z^2(Q,\Bbb C^\times)$ tal que $M \simeq M(Q)$.
+\end{alertblock}
+\textcolor{orange}{Demostración.}
+
+Veamos que el grupo $B^2(Q, \Bbb C^\times)$ es divisible. \pause
+Para eso tomemos alguna $f \in B^2(Q,\Bbb C^\times)$ tal que
+\[
+f(x,y) = h(x)h(xy)^{-1}h(y)
+\]
+\pause
+luego como $\Bbb C^\times$ es divisible nos tomamos $k(x)$ raíz enésima con $k(1)=1$. Afirmamos que 
+\[
+g(x,y) = k(x)k(xy)^{-1}k(y)
+\]
+nos sirve. \pause Al ser divisible por el teorema antes visto tiene un complemento y $M \simeq M(Q)$ y por lo tanto es finito.
+\end{frame}
+
+\begin{frame}[fragile]{Teorema de Schur.}
+
+\metroset{block=fill}
+\begin{alertblock}{Teorema de Schur 1904.}
+Todo grupo finito $Q$ tiene un cubrimiento $U$ que es una extensión central de $M(Q)$ por $Q$.
+\end{alertblock}
+
+\pause
+\textcolor{orange}{Demostración.} 
+\begin{itemize}
+	\item Consideramos $M$ un complemento de $B^2(Q, \Bbb C)$ como en el lema anterior. Sea $K = M^*$. \pause Nos vamos a construir una cocadena $s:Q \times Q \to M^*$ y a partir de ésta una extensión central. \pause
+	\item Definimos $s(x,y):M \to \Bbb C^\times$ por medio de $f\mapsto f(x,y).$ Verificamos que $s \in Z^2(Q, \Bbb C)$. \pause
+	\item Por la correspondencia existe alguna extensión $U$ de $M^*$ por $Q$. Afirmamos que es un cubrimiento. \pause Para verificar esto debemos ver que la transgresión $\delta: M^{**} \to  M(Q)$ es un isomorfismo. \pause
+	
+\end{itemize}
+
+\end{frame}
+\begin{frame}[fragile]{Demostración Schur (parte 2/2).}
+\begin{itemize}
+	\item Como $M \simeq M^{*}$ porque ambos son abelianos finitos entonces tenemos que $|M^{**}|=|M(Q)|$ por lo que alcanza con ver que es un epimorfismo.
+	
+	\item Dado $[f] \in M(Q)$ luego $f \in Z^2(Q, \Bbb C^\times) = B^2 \times M$ por lo que $f=bf'$ con $b \in B^2$ y $f' \in M$ tal que $[f]=[f']$. Podemos definir $\phi:M^{*} \to \Bbb C^\times$ por medio de $\phi(\mu) = \mu(f')$. \pause De esta manera vemos que $\delta(\phi)$ por definición es $[\phi(s(x,y))] = [s(x,y) (f')] = [f'(x,y)]$. \pause
+	\medskip
+	
+	Verificamos que $\delta(\phi) = [f'] = [f]$ por lo tanto es sobreyectiva.
+	
+	\item Como vimos que es un isomorfismo tenemos que la extensión $U$ es un cubrimiento de $M^* \simeq M(Q)$ por $Q$ tal como queríamos ver.
+\end{itemize}
+\end{frame}
+\section{Bibliografía.}
+\begin{frame}[fragile]{Bibliografía consultada.}
+\begin{itemize}
+	\item VENDRAMIN, Teoría de grupos.
+	\item ROTMAN, An introduction to the theory of groups, 4th edition, 1995, Springer-Verlag.
+\end{itemize}
+\end{frame}
+\end{document}
